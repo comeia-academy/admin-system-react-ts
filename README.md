@@ -1,8 +1,8 @@
-# admin-system-react-academy
+# Sistema Administrativo Academy - Versão React e Typescript
 
 ## Descrição
 
-Este é um modelo base para o Sistema Administrativo utilizado no módulo de React da turma do Comeia Academy 2023.
+Este é um modelo base para o Sistema Administrativo utilizado no módulo de React da turma do Comeia Academy 2023, escrito utilizando React com Typescript, Vite e Json Server.
 
 ## Configuração
 
