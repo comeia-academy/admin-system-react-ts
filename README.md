@@ -8,7 +8,7 @@ Este é um modelo base para o Sistema Administrativo utilizado no módulo de Rea
 
 Para configurar este projeto localmente, siga estas etapas:
 
-1. Clone o repositório: `git clone https://github.com/ComeiaLab/admin-system-react-academy.git`
+1. Clone o repositório: `git clone [https://github.com/ComeiaLab/admin-system-react-academy.git](https://github.com/comeia-academy/admin-system-react-ts.git)`
 2. Instale as dependências: `npm install`
 3. Crie os arquivos `.env.development.local` e `.env.production.local` baseado nos arquivos `.env.development.example` e `.env.production.example`, e preencha as variáveis de ambiente necessárias.
 4. Execute o projeto: `npm run dev`
