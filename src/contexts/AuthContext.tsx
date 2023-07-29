@@ -1,14 +1,19 @@
 // ** Imports do React
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-// ** Imports de serviços
-import { User } from "../services/authService";
+// ** Imports de tipos e serviços
+import { User } from "../types/interfaces/User";
+import { 
+    signin as signinService,
+    signup as signupService 
+} from "../services/authService";
 
 interface AuthContextProps {
     authenticated: boolean;
-    user: User;
-    login: (user: User) => void;
-    logout: () => void;
+    token: string;
+    signin: (user: User) => void;
+    signup: (user: User) => void;
+    signout: () => void;
     isLoading: boolean;
 }
 
@@ -18,32 +23,38 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
-    const [user, setUser] = useState({} as User);
+    const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            setToken(storedToken);
             setAuthenticated(true);
         }
         setIsLoading(false);
     }, []);
 
-    const login = (loggedInUser: User) => {
-        setUser(loggedInUser);
+    const signin = async (loggedInUser: User) => {
+        const { token } = await signinService(loggedInUser);
+        setToken(token);
         setAuthenticated(true);
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        localStorage.setItem("token", token);
     };
 
-    const logout = () => {
-        setUser({} as User);
+    const signup = async (loggedInUser: User) => {
+        await signupService(loggedInUser);
+        await signin(loggedInUser);
+    };
+
+    const signout = () => {
+        setToken("");
         setAuthenticated(false);
-        localStorage.removeItem("user");
+        localStorage.removeItem("token");
     };
 
     return (
-        <AuthContext.Provider value={{ authenticated, user, login, logout, isLoading }}>
+        <AuthContext.Provider value={{ authenticated, token, signin, signup, signout, isLoading }}>
             {children}
         </AuthContext.Provider>
     );

@@ -5,7 +5,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // ** Imports de páginas
-import Login from "./pages/login";
+import Signin from "./pages/signin";
+import Signup from "./pages/signup/Signup";
 
 // ** Imports de rotas
 import AuthRoutes from "./routes/AuthRoutes";
@@ -18,7 +19,8 @@ const App: React.FC = () => {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/*" element={<AuthRoutes />} />
         </Routes>
       </BrowserRouter>

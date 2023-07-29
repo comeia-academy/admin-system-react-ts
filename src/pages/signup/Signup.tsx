@@ -3,10 +3,10 @@ import React from "react";
 
 // Imports de pacotes
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Imports de estilos
-import styles from "./Login.module.css";
+import styles from "./Signup.module.css";
 
 // Imports de componentes
 import Form from "../../components/forms/Form";
@@ -14,15 +14,16 @@ import Input from "../../components/forms/Input";
 import Button from "../../components/common/Button";
 import Title from "../../components/common/Title";
 
-// Imports de serviços
-import { User, login as loginService } from "../../services/authService";
+// Imports de tipos e serviços
+import { User } from "../../types/interfaces/User";
+import { signup as signupService } from "../../services/authService";
 
 // Imports de contextos
 import { useAuth } from "../../contexts/AuthContext";
 
-const Login = () => {
+const Signup = () => {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { signup } = useAuth();
 
     const initialValues: User = {
         email: "",
@@ -40,16 +41,15 @@ const Login = () => {
 
     const onSubmit = async (values: User) => {
         try {
-            const user = await loginService(values);
-            login(user);
+            await signup(values);
             navigate("/");
         } catch (error) {
-            alert("Error when logging in");
+            alert("Error when signup");
         }
     };
 
     return (
-        <div className={styles.loginWrapper}>
+        <div className={styles.signupWrapper}>
             <Form
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -57,7 +57,7 @@ const Login = () => {
             >
                 {({ errors, touched }) => (
                     <>
-                        <Title>ADMIN SYSTEM EXAMPLE</Title>
+                        <Title>SIGN UP</Title>
 
                         <Input
                             label="Email"
@@ -75,7 +75,12 @@ const Login = () => {
                             touched={touched.password}
                         />
 
-                        <Button type="submit">Sign in</Button>
+                        <Button type="submit">Sign up</Button>
+
+                        <br />
+
+                        <span>Already have an account?</span>
+                        <Link to="/signin">Sign in</Link>
                     </>
                 )}
             </Form>
@@ -83,4 +88,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

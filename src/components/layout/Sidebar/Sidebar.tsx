@@ -11,7 +11,7 @@ import styles from "./Sidebar.module.css";
 import { useAuth } from "../../../contexts/AuthContext";
 
 const Sidebar = () => {
-    const { logout } = useAuth();
+    const { signout } = useAuth();
 
     return (
         <div className={styles.sidebar}>
@@ -21,6 +21,20 @@ const Sidebar = () => {
                     <li>
                         <NavLink to="/">
                             <h3>Dashboard</h3>
+                        </NavLink>
+                    </li>
+                </ul>
+
+                <h3>Users</h3>
+                <ul>
+                    <li>
+                        <NavLink to="/users/insert">
+                            Insert User
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/users/list">
+                            List Users
                         </NavLink>
                     </li>
                 </ul>
@@ -55,8 +69,8 @@ const Sidebar = () => {
 
                 <ul>
                     <li>
-                        <NavLink onClick={logout} to="/login">
-                            <h3>Logout</h3>
+                        <NavLink onClick={signout} to="/signin">
+                            <h3>Signout</h3>
                         </NavLink>
                     </li>
                 </ul>

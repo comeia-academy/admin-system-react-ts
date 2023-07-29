@@ -13,8 +13,9 @@ import Button from "../../../components/common/Button";
 import Textarea from "../../../components/forms/Textarea";
 import Title from "../../../components/common/Title";
 
-// ** Imports de serviços
-import { CrudExample1, createOrUpdateItem } from "../../../services/crudExample1Service";
+// ** Imports de tipos e serviços
+import { CrudExample1 } from "../../../types/interfaces/CrudExample1";
+import { createOrUpdateItem } from "../../../services/crudExample1Service";
 
 const HandleExample1: React.FC = () => {
     const navigate = useNavigate();

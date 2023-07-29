@@ -7,12 +7,9 @@ import { useNavigate } from "react-router-dom";
 // ** Imports de componentes
 import { Table, Column } from "../../../components/common/Table";
 
-// ** Imports de serviços
-import { 
-    CrudExample1, 
-    deleteItem, 
-    getItems 
-} from "../../../services/crudExample1Service";
+// ** Imports de tipos e serviços
+import { CrudExample1 } from "../../../types/interfaces/CrudExample1";
+import { deleteItem, getItems } from "../../../services/crudExample1Service";
 
 const ListExample1: React.FC = () => {
     const navigate = useNavigate();

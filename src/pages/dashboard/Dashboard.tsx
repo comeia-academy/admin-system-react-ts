@@ -11,9 +11,11 @@ import { FaFolder } from "react-icons/fa";
 import Title from "../../components/common/Title";
 import InfoBox from "../../components/common/InfoBox";
 
-// ** Imports de serviços
-import { CrudExample1, getItems as getItems1 } from "../../services/crudExample1Service";
-import { CrudExample2, getItems as getItems2 } from "../../services/crudExample2Service";
+// ** Imports de tipos e serviços
+import { CrudExample1 } from "../../types/interfaces/CrudExample1";
+import { CrudExample2 } from "../../types/interfaces/CrudExample2";
+import { getItems as getItems1 } from "../../services/crudExample1Service";
+import { getItems as getItems2 } from "../../services/crudExample2Service";
 
 const Dashboard = () => {
   const [items1, setItems1] = useState<CrudExample1[]>([]);
